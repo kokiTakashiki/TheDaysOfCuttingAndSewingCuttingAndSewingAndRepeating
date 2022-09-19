@@ -21,6 +21,16 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ForEach([ColorScheme.light, ColorScheme.dark], id: \.self) { colorScheme in
+            ForEach(["iPhone 12", "iPhone SE (3rd generation)"], id: \.self) { deviceName in
+                ForEach(["en_US", "ja_JP"], id: \.self) { id in
+                    ContentView()
+                        .environment(\.locale, .init(identifier: id))
+                        .preferredColorScheme(colorScheme)
+                        .previewDevice(PreviewDevice(rawValue: deviceName))
+                        .previewDisplayName(deviceName)
+                }
+            }
+        }
     }
 }
