@@ -22,7 +22,9 @@ struct MainAndSettingTabView: View {
     private func switchScreens() -> some View {
         switch selectionItem {
         case .main:
-            Color.gray
+            RoundedRectangle(cornerRadius: 0)
+                .fill(.regularMaterial)
+                .colorScheme(.dark)
         case .setting:
             Color.blue
         }
@@ -42,7 +44,6 @@ extension MainAndSettingTabView {
                 content: {
                     switchScreens()
                         .transition(.identity)
-                        .cornerRadius(30)
                 },
                 tabItem: { item, isSelected  in
                     TabItemView(item: item, isSelected: isSelected)

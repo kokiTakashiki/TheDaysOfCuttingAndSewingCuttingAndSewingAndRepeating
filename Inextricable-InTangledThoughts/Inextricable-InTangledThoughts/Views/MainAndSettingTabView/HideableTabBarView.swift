@@ -48,7 +48,7 @@ struct HideableTabBarView<Element, Content, TabItem>: View
 
                 // create contents
                 content
-                    .ignoresSafeArea(edges: [.bottom])
+                    .ignoresSafeArea(edges: [.top, .bottom])
                 
                 VStack(spacing: 0) {
                     tabBar

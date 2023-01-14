@@ -8,15 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("test")
+    @State private var showingSheet = false
+        var body: some View {
+            ZStack {
+                LinearGradient(
+                    colors: [.orange, .red, .red, .purple],
+                    startPoint: .init(x: 0, y: 0),
+                    endPoint: .init(x: 1.0, y: 1.0)
+                )
+                .ignoresSafeArea(edges: [.top, .bottom])
+                
+                Button("Sheetを開く") {
+                    self.showingSheet.toggle()
+                }
+                .sheet(isPresented: $showingSheet) {
+                    MainAndSettingTabView()
+                        .clearModalBackground()
+                }
+            }
         }
-        .padding()
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
